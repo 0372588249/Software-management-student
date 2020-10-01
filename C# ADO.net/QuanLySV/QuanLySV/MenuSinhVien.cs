@@ -129,6 +129,7 @@ namespace QuanLySV
         void getDataSVToForm()
         {
             lbTenSV.Text = SinhVien.Ten_sv.ToUpper();
+            lbTenSV1.Text = SinhVien.Ten_sv.ToUpper();
             lbMaSV.Text = SinhVien.Ma_sv;
             lbTrangThai.Text = SinhVien.Trang_thai_hoc;
             lbNgayVaoTruong.Text = SinhVien.Ngay_vao_truong_sv;
@@ -163,9 +164,18 @@ namespace QuanLySV
             lbSDT.Text = SinhVien.Sdt_sv;
             lbEmail.Text = SinhVien.Email_sv;
 
+            /*---------------------------------------------------*/
+            lb_tencha.Text = SinhVien.Ten_cha;
+            lb_ngaysinhcha.Text = SinhVien.Ngay_sinh_cha;
+            lb_nghenghiepcha.Text = SinhVien.Nghe_nghiep_cha;
+            lb_sdtcha.Text = SinhVien.Sdt_cha;
+            lb_quoctichcha.Text = SinhVien.Quoc_tich_cha;
+            lb_tenme.Text = SinhVien.Ten_me;
+            lb_ngaysinhme.Text = SinhVien.Ngay_sinh_me;
+            lb_nghenghiepme.Text = SinhVien.Nghe_nghiep_me;
+            lb_sdtme.Text = SinhVien.Sdt_me;
+            lb_quoctichme.Text = SinhVien.Quoc_tich_me;
         }
-
-
 
 
         /* ------------- Các hàm mở form mới ------------- */
@@ -187,6 +197,19 @@ namespace QuanLySV
             editSV.Close();
             getDataSVToForm();
         }
+
+        private void btThongTinGiaDinh_Click(object sender, EventArgs e)
+        {
+            panelGiaDinh.Visible = true;
+            panelThongTinSinhVien.Visible = false;
+        }
+
+        private void btThongTinSV_Click(object sender, EventArgs e)
+        {
+            panelThongTinSinhVien.Visible = true;
+            panelGiaDinh.Visible = false;
+        }
+
 
     }
 }
