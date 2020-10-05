@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace QuanLySV
 {
@@ -40,7 +41,7 @@ namespace QuanLySV
             //lbDate.Text = this.Date;
             getDataSinhVienFromDB();
             getDataSVToForm();
-            //getPicture();
+            getPicture();
         }
 
         /* Sự kiện click nút thoát */
@@ -112,19 +113,20 @@ namespace QuanLySV
             }
             DB.conn.Close();
         }
-        /* Load link ảnh*/
-        //void getPicture()
-        //{
-        //    string query = "SELECT link_img_sv FROM SINH_VIEN WHERE ma_sv='"+NameUser+"'";
-        //    DB.conn.Open();
-        //    SqlCommand cmd = new SqlCommand(query, DB.conn);
-        //    SqlDataReader rd = cmd.ExecuteReader();
-        //    while (rd.Read())
-        //    {
-        //        pbImgSV.Image = new Bitmap(Application.StartupPath +"\\img\\"+rd[0].ToString()+"jpg");
-        //    }
-        //    DB.conn.Close();
-        //}
+        /* Load ảnh từ DB lên Form*/
+        void getPicture()
+        {
+            string query = "SELECT link_img_sv FROM SINH_VIEN WHERE ma_sv='" + NameUser + "'";
+            DB.conn.Open();
+            SqlCommand cmd = new SqlCommand(query, DB.conn);
+            byte[] link = (byte[] )cmd.ExecuteScalar() ;
+            MemoryStream stream = new MemoryStream(link.ToArray());
+            Image image = Image.FromStream(stream);
+            if (image == null)
+                return;
+            pbImgSV.Image = image;
+            DB.conn.Close(); 
+        }
         /* Load data sinh viên lên panel */
         void getDataSVToForm()
         {
@@ -177,7 +179,6 @@ namespace QuanLySV
             lb_quoctichme.Text = SinhVien.Quoc_tich_me;
         }
 
-
         /* ------------- Các hàm mở form mới ------------- */
 
         /* Mở form đang phát triển */
@@ -188,8 +189,7 @@ namespace QuanLySV
             dpt.Close();
         }
 
-
-        /* Mở form sửa */
+        /* Mở form sửa thông tin sinh viên*/
         private void btSuaThongTinSV_Click(object sender, EventArgs e)
         {
             SuaThongTinSV editSV = new SuaThongTinSV(NameUser);
@@ -197,19 +197,24 @@ namespace QuanLySV
             editSV.Close();
             getDataSVToForm();
         }
-
+        /* Load panel thông tin gia đình*/
         private void btThongTinGiaDinh_Click(object sender, EventArgs e)
         {
             panelGiaDinh.Visible = true;
             panelThongTinSinhVien.Visible = false;
         }
-
+        /* Load panel thông tin sinh viên*/
         private void btThongTinSV_Click(object sender, EventArgs e)
         {
             panelThongTinSinhVien.Visible = true;
             panelGiaDinh.Visible = false;
         }
-
-
+        /* Mở form sửa thông tin gia đình*/
+        private void bt_suathongtingiadinh_Click(object sender, EventArgs e)
+        {
+            SuaThongTinGD editGD = new SuaThongTinGD(NameUser);
+            editGD.ShowDialog();
+            editGD.Close();
+        }
     }
 }

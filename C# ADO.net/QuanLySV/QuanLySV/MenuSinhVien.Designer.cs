@@ -157,7 +157,7 @@
             this.đăngXuấtToolStripMenuItem,
             this.thoátToolStripMenuItem});
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
-            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(103, 29);
+            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(103, 32);
             this.hệThốngToolStripMenuItem.Text = "Hệ thống";
             // 
             // đổiMậtKhẩuToolStripMenuItem
@@ -184,26 +184,26 @@
             // quảnLýToolStripMenuItem
             // 
             this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
-            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(89, 29);
+            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(89, 32);
             this.quảnLýToolStripMenuItem.Text = "Quản lý";
             // 
             // thốngKêToolStripMenuItem
             // 
             this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
-            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(102, 32);
             this.thốngKêToolStripMenuItem.Text = "Thống kê";
             // 
             // thôngTinPhầnMềmToolStripMenuItem
             // 
             this.thôngTinPhầnMềmToolStripMenuItem.Name = "thôngTinPhầnMềmToolStripMenuItem";
-            this.thôngTinPhầnMềmToolStripMenuItem.Size = new System.Drawing.Size(195, 29);
+            this.thôngTinPhầnMềmToolStripMenuItem.Size = new System.Drawing.Size(195, 32);
             this.thôngTinPhầnMềmToolStripMenuItem.Text = "Thông tin phần mềm";
             this.thôngTinPhầnMềmToolStripMenuItem.Click += new System.EventHandler(this.thôngTinPhầnMềmToolStripMenuItem_Click);
             // 
             // trợGiúpToolStripMenuItem
             // 
             this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(93, 29);
+            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(93, 32);
             this.trợGiúpToolStripMenuItem.Text = "Trợ giúp";
             this.trợGiúpToolStripMenuItem.Click += new System.EventHandler(this.trợGiúpToolStripMenuItem_Click);
             // 
@@ -220,7 +220,7 @@
             this.trợGiúpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1921, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1921, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -490,6 +490,7 @@
             this.bt_suathongtingiadinh.Size = new System.Drawing.Size(92, 63);
             this.bt_suathongtingiadinh.TabIndex = 2;
             this.bt_suathongtingiadinh.UseVisualStyleBackColor = true;
+            this.bt_suathongtingiadinh.Click += new System.EventHandler(this.bt_suathongtingiadinh_Click);
             // 
             // lbTenSV1
             // 
@@ -1265,7 +1266,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(299, 77);
             this.button3.TabIndex = 15;
-            this.button3.Text = "Thông tin sinh viên";
+            this.button3.Text = "Thông tin cố vấn học tập";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button4
@@ -1277,7 +1278,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(299, 77);
             this.button4.TabIndex = 13;
-            this.button4.Text = "Thông tin sinh viên";
+            this.button4.Text = "Đánh giá rèn luyện";
             this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
@@ -1289,7 +1290,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(299, 77);
             this.button5.TabIndex = 11;
-            this.button5.Text = "Các môn đang học và điểm";
+            this.button5.Text = "Kết quả học tập";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // btChuongTrinhKhung
@@ -1301,7 +1302,7 @@
             this.btChuongTrinhKhung.Name = "btChuongTrinhKhung";
             this.btChuongTrinhKhung.Size = new System.Drawing.Size(299, 77);
             this.btChuongTrinhKhung.TabIndex = 9;
-            this.btChuongTrinhKhung.Text = "Chương trình khung";
+            this.btChuongTrinhKhung.Text = "Danh sách môn học";
             this.btChuongTrinhKhung.UseVisualStyleBackColor = false;
             // 
             // btThongTinGiaDinh

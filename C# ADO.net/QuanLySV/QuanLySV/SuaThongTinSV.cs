@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace QuanLySV
 {
@@ -36,6 +38,7 @@ namespace QuanLySV
         {
             getDataSinhVienFromDB();
             setDataSVToForm();
+            getPicture();
         }
         /* Sự kiện click nút lưu thông tin */
         private void bt_Luu_Click(object sender, EventArgs e)
@@ -79,11 +82,12 @@ namespace QuanLySV
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin !", "Warning");
                     return;
                 }
+                savePicture();
                 DB.conn.Open();
-                //SqlCommand cmd = new SqlCommand(query_sinhvien, DB.conn);
-                //cmd.ExecuteNonQuery();
-                SqlCommand cmd1 = new SqlCommand(query_khoa, DB.conn);
-                cmd1.ExecuteNonQuery();
+                SqlCommand cmd = new SqlCommand(query_sinhvien, DB.conn);
+                cmd.ExecuteNonQuery();
+                //SqlCommand cmd1 = new SqlCommand(query_khoa, DB.conn);
+                //cmd1.ExecuteNonQuery();
                 MessageBox.Show("Sửa thành công !", "Message");
             }
             catch (Exception ex)
@@ -118,39 +122,6 @@ namespace QuanLySV
             Get_nganh();
             Get_dantoc(dantoc);
         }
-        //void ExecuteSQL(string query, string []parameter, object[] value)
-        //{
-        //    try
-        //    {
-        //        DB.conn.Open();
-        //        SqlCommand cmd = new SqlCommand(query, DB.conn);
-        //        if(parameter != null)
-        //        {
-        //            for(int i = 0; i < parameter.Length; i++)
-        //            {
-        //                cmd.Parameters.AddWithValue(parameter[i],value[i]);
-        //            }
-        //        }
-        //        cmd.ExecuteNonQuery();
-                
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Lỗi SQL");
-        //    }
-        //    finally
-        //    {
-        //        DB.conn.Close();
-        //    }
-        //}
-        ////Lấy dữ liệu từ datetimepicker ngày vào trường 
-        //void Set_vaotruong()
-        //{
-        //    string query = @"SELECT ngay_vao_truong FROM SINH_VIEN WHERE ma_sv='" + NameUser + "'";
-        //    string[] parameter = { "date" };
-        //    object[] value = { Convert.ToDateTime(dtp_vaotruong.Text).ToString()};
-        //    ExecuteSQL(query,parameter,value);
-        //}
         //Lấy dữ liệu cho dateTimePicker ngày vào trường
         void Get_ngayvaotruong()
         {
@@ -502,33 +473,7 @@ namespace QuanLySV
             }
             DB.conn.Close();
         }
-        /* Hàm xóa dữ liệu trên textbox và combobox*/
-        void ClearData()
-        {
-            cbbTrangThai.SelectedIndex = -1;
-            tbKhoaHoc.Text = string.Empty;
-            cbbGioiTinh.SelectedIndex = -1;
-            cbbNganh.SelectedIndex = -1;
-            cbbKhoa.SelectedIndex = -1;
-            tbChucVu.Text = string.Empty;
-            cbbBacDaoTao.SelectedIndex = -1;
-            cbbChuyenNganh.SelectedIndex = -1;
-            cbbLop.SelectedIndex = -1;
-            tbCongTacDoan.Text = string.Empty;
-            tbCoSo.Text = string.Empty;
-            cbbNoiSinh.SelectedIndex = -1;
-            cbbDanToc.SelectedIndex = -1;
-            tbCMND.Text = string.Empty;
-            cbbNoiCapCMND.SelectedIndex = -1;
-            cbbTonGiao.SelectedIndex = -1;
-            cbbKhuVuc.SelectedIndex = -1;
-            cbbDoiTuong.SelectedIndex = -1;
-            tbDienChinhSach.Text = string.Empty;
-            tbHoKhau.Text = string.Empty;
-            tbDiaChiLienHe.Text = string.Empty;
-            tbSDT.Text = string.Empty;
-            tbEmail.Text = string.Empty;
-        }
+
         /*Sự kiện click nút huỷ*/
         private void bt_Huy_Click(object sender, EventArgs e)
         {
@@ -594,31 +539,56 @@ namespace QuanLySV
                 {
                     return 1;
                 }
-            return 0;
-            
+            return 0;  
         }
         private string nameFile; // Lưu tên file được chọn 
         /*Sự kiện chọn ảnh để thay đổi*/
         private void btSuaAnh_Click(object sender, EventArgs e)
         {
-            //pictureBox1.Image = new Bitmap(Application.StartupPath+ "\\img\\cool-boy0.jpg");
-            
+           
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.InitialDirectory = "D:\\Users\\HP\\Pictures\\Saved Pictures";
+            //openFile.InitialDirectory = "D:\\Users\\HP\\Pictures\\Saved Pictures";
             if(openFile.ShowDialog()== DialogResult.OK)
             {
                 nameFile = openFile.FileName;
+                if (string.IsNullOrEmpty(nameFile))
+                    return;
+                Image myImage = Image.FromFile(nameFile);
+                pictureBox1.Image = myImage;
             }
-            string query = @" SELECT link_img_sv='"+nameFile+"' FROM SINH_VIEN WHERE ma_sv='" + NameUser + "'";
+        }
+        /*Query save picture*/
+        void savePicture()
+        {
+
+            byte[] img = ImageTobByArray(pictureBox1.Image);
+            DB.conn.Open();
+            SqlCommand cmd = new SqlCommand(" UPDATE SINH_VIEN SET link_img_sv= @img WHERE ma_sv=@nameUser", DB.conn);
+            cmd.Parameters.AddWithValue("@img", img);
+            cmd.Parameters.AddWithValue("@nameUser", NameUser);
+            cmd.ExecuteNonQuery();
+            DB.conn.Close();
+        }
+        /*Chuyển ảnh thành byte*/
+        byte[] ImageTobByArray(Image img)
+        {
+            MemoryStream stream = new MemoryStream();
+            img.Save(stream, ImageFormat.Jpeg);
+            return stream.ToArray();
+        }
+        /*Load ảnh lên từ DB*/
+        void getPicture()
+        {
+            string query = "SELECT link_img_sv FROM SINH_VIEN WHERE ma_sv='" + NameUser + "'";
             DB.conn.Open();
             SqlCommand cmd = new SqlCommand(query, DB.conn);
-            //SqlDataReader rd= cmd.ExecuteReader();
-            //while (rd.Read())
-            //{
-            //    pictureBox1.Image = new Bitmap(Application.StartupPath + rd[0].ToString());
-            //}
-
-            DB.conn.Close(); 
+            byte[] link = (byte[])cmd.ExecuteScalar();
+            MemoryStream stream = new MemoryStream(link.ToArray());
+            Image image = Image.FromStream(stream);
+            if (image == null)
+                return;
+            pictureBox1.Image = image;
+            DB.conn.Close();
         }
     }
 }

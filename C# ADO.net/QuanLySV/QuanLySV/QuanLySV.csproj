@@ -96,6 +96,12 @@
     <Compile Include="DSSinhVien.Designer.cs">
       <DependentUpon>DSSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuaThongTinGD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaThongTinGD.Designer.cs">
+      <DependentUpon>SuaThongTinGD.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDangPhatTrien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SuaThongTinGD.resx">
+      <DependentUpon>SuaThongTinGD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuaThongTinSV.resx">
       <DependentUpon>SuaThongTinSV.cs</DependentUpon>
     </EmbeddedResource>

@@ -73,7 +73,7 @@ CREATE TABLE SINH_VIEN(
 	dia_chi_sv NVARCHAR(150),		-- Địa chỉ sinh viên
 	ngay_vao_truong_sv DATE,		-- Ngày vào trường của sinh viên
 	chuc_vu_sv NVARCHAR(30),		-- Chức vụ của sinh viên
-	link_img_sv TEXT,				-- Đường link dẫn tới ảnh của sinh viên
+	link_img_sv IMAGE,				-- Đường link dẫn tới ảnh của sinh viên
 	alt_img_sv NVARCHAR(200),		-- Mô tả của ảnh sinh viên
 	----------------- Thông tin cha sinh viên -----------------
 	ten_cha NVARCHAR(50),		-- Tên cha của sinh viên
