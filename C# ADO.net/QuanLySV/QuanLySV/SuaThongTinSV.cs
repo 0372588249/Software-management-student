@@ -44,11 +44,11 @@ namespace QuanLySV
         private void bt_Luu_Click(object sender, EventArgs e)
         {
             
-            string ngay_vao_truong = dtp_vaotruong.Value.ToString();
-            string ngay_sinh = dtp_ngaysinh.Value.ToString();
-            string ngay_cap_CMND = dtp_ngaycapcmnd.Value.ToString();
-            string ngay_vao_doan = dtp_ngayvaodoan.Value.ToString();
-            string ngay_vao_dang = dtp_ngayvaodang.Value.ToString();
+            string ngay_vao_truong = dtp_vaotruong.Value.ToString("mm-dd-yyyy");
+            string ngay_sinh = dtp_ngaysinh.Value.ToString("mm-dd-yyyy");
+            string ngay_cap_CMND = dtp_ngaycapcmnd.Value.ToString("mm-dd-yyyy");
+            string ngay_vao_doan = dtp_ngayvaodoan.Value.ToString("mm-dd-yyyy");
+            string ngay_vao_dang = dtp_ngayvaodang.Value.ToString("mm-dd-yyyy");
             
             string query_sinhvien = @"UPDATE SINH_VIEN SET trang_thai_hoc =N'" + cbbTrangThai.GetItemText(cbbTrangThai.SelectedItem) + "'/*,ngay_vao_truong_sv='" + ngay_vao_truong + "'*/, khoa_hoc_sv= '" + tbKhoaHoc.Text + "'," +
             "gioitinh_sv= N'" + cbbGioiTinh.Text + "',chuc_vu_sv=N'" + tbChucVu.Text + "',cong_tac_doan=N'" + tbCongTacDoan.Text + "', co_so=N'" + tbCoSo.Text + "'," +
