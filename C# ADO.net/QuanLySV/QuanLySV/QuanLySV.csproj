@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,12 @@
     <Compile Include="CBacDaoTao.cs" />
     <Compile Include="CChuyenNganh.cs" />
     <Compile Include="CGiaoVien.cs" />
+    <Compile Include="ChiTietSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChiTietSinhVien.Designer.cs">
+      <DependentUpon>ChiTietSinhVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChuyenNganh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,8 +165,23 @@
     <Compile Include="SuaThongTinSV.Designer.cs">
       <DependentUpon>SuaThongTinSV.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongKeDiemRenLuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongKeDiemRenLuyen.Designer.cs">
+      <DependentUpon>ThongKeDiemRenLuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKeDiemTichLuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongKeDiemTichLuy.Designer.cs">
+      <DependentUpon>ThongKeDiemTichLuy.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BacDaoTao.resx">
       <DependentUpon>BacDaoTao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChiTietSinhVien.resx">
+      <DependentUpon>ChiTietSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChuyenNganh.resx">
       <DependentUpon>ChuyenNganh.cs</DependentUpon>
@@ -218,6 +240,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SuaThongTinSV.resx">
       <DependentUpon>SuaThongTinSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeDiemRenLuyen.resx">
+      <DependentUpon>ThongKeDiemRenLuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeDiemTichLuy.resx">
+      <DependentUpon>ThongKeDiemTichLuy.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

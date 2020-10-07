@@ -309,13 +309,15 @@ namespace QuanLySV
         /* Mở form thống kê điểm tích lũy sinh viên */
         void Open_TichLuySV()
         {
-
+            ThongKeDiemTichLuy thongKeDiemTichLuy = new ThongKeDiemTichLuy();
+            thongKeDiemTichLuy.ShowDialog();
         }
 
         /* Mở form thống kê điểm rèn luyện sinh viên */
         void Open_RenLuyenSV()
         {
-
+            ThongKeDiemRenLuyen thongKeDiemRenLuyen = new ThongKeDiemRenLuyen();
+            thongKeDiemRenLuyen.ShowDialog();
         }
 
 

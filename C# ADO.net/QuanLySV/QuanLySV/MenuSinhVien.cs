@@ -120,12 +120,18 @@ namespace QuanLySV
             DB.conn.Open();
             SqlCommand cmd = new SqlCommand(query, DB.conn);
             byte[] link = (byte[] )cmd.ExecuteScalar() ;
-            MemoryStream stream = new MemoryStream(link.ToArray());
-            Image image = Image.FromStream(stream);
-            if (image == null)
-                return;
-            pbImgSV.Image = image;
             DB.conn.Close(); 
+            MemoryStream stream = new MemoryStream(link.ToArray());
+            try
+            {
+                Image image = Image.FromStream(stream);
+                if (image == null)
+                    return;
+                pbImgSV.Image = image;
+            }catch(Exception e)
+            {
+                return;
+            }
         }
         /* Load data sinh viên lên panel */
         void getDataSVToForm()

@@ -14,7 +14,7 @@ namespace QuanLySV
     */
     class DB
     {
-        private static string conn_str = @"Data Source = ADMIN\SQLEXPRESS;
+        private static string conn_str = @"Data Source = DESKTOP-5JF9V05\SQLEXPRESS;
                                             Initial Catalog = QUANLYSV;
                                             Integrated Security = SSPI;";
         public static SqlConnection conn = new SqlConnection(conn_str);

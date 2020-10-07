@@ -583,12 +583,19 @@ namespace QuanLySV
             DB.conn.Open();
             SqlCommand cmd = new SqlCommand(query, DB.conn);
             byte[] link = (byte[])cmd.ExecuteScalar();
-            MemoryStream stream = new MemoryStream(link.ToArray());
-            Image image = Image.FromStream(stream);
-            if (image == null)
-                return;
-            pictureBox1.Image = image;
             DB.conn.Close();
+            MemoryStream stream = new MemoryStream(link.ToArray());
+            try
+            {
+                Image image = Image.FromStream(stream);
+                if (image == null)
+                    return;
+                pictureBox1.Image = image;
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
     }
 }
